@@ -1,5 +1,12 @@
 node_modules/
 .env
-.DS_Store
-logs/
+.env.local
+.env.production
+
+logs
 *.log
+
+.DS_Store
+
+dist/
+build/
