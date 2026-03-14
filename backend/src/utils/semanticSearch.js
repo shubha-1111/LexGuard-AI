@@ -1,24 +1,23 @@
 const { createVector, cosineSimilarity } = require("./embeddings");
 
-exports.searchPrecedents = (query, precedents) => {
+exports.semanticSearch = (query, documents) => {
 
     const queryVector = createVector(query);
 
-    const scored = precedents.map(p => {
+    const scored = documents.map(doc => {
 
-        const docVector = createVector(p.text);
+        const docVector = createVector(doc.text);
 
         const score = cosineSimilarity(queryVector, docVector);
 
         return {
-            precedent: p,
+            document: doc,
             score
         };
 
     });
 
-    scored.sort((a,b)=>b.score-a.score);
+    scored.sort((a,b) => b.score - a.score);
 
     return scored.slice(0,5);
-
 };

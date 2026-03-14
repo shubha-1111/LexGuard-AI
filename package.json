@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "chrono-node": "^2.9.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6"
+  }
+}

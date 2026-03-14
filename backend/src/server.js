@@ -24,6 +24,7 @@ const draftRoutes = require("./routes/draftRoutes");
 const riskRoutes = require("./routes/riskRoutes");
 const translationRoutes = require("./routes/translationRoutes");
 const legalChatRoutes = require("./routes/legalChatRoutes");
+const deadlineRoutes = require("./routes/deadlineRoutes");
 
 
 // ================= Security Middlewares =================
@@ -66,7 +67,7 @@ app.use("/api/ai/draft", draftRoutes);
 app.use("/api/ai/risk-analysis", riskRoutes);
 app.use("/api/ai/translate", translationRoutes);
 app.use("/api/ai",legalChatRoutes);
-
+app.use("/api/deadlines", deadlineRoutes);
 
 // ================= Error Handler =================
 

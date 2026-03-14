@@ -6,13 +6,21 @@ const { decryptText } = require("../utils/encryption");
 const { vectorSearch } = require("../utils/vectorSearch");
 
 const { generateLegalAnswer } = require("../utils/legalChatEngine");
-const { generateSummary } = require("../utils/aiSummarizer");
 
 exports.askLegalAI = async (req,res,next)=>{
 
 try{
 
 const { question } = req.body;
+
+if(!question || question.length < 5){
+return res.status(400).json({message:"Invalid question"});
+}
+
+
+// ==============================
+// FETCH DOCUMENTS
+// ==============================
 
 const documents = await Document.find();
 
@@ -21,6 +29,11 @@ const decryptedDocs = documents.map(d=>{
 return decryptText(d.encryptedText,d.iv);
 
 });
+
+
+// ==============================
+// FETCH PRECEDENTS
+// ==============================
 
 const precedents = await Precedent.find();
 
@@ -36,15 +49,29 @@ text
 
 });
 
+
+// ==============================
+// VECTOR PRECEDENT SEARCH
+// ==============================
+
 const precedentResults = vectorSearch(question,precedentDocs);
 
 const precedentTexts = precedentResults.map(r=>r.document.text);
 
-const context = [...decryptedDocs,...precedentTexts]
-.slice(0,5)
-.join("\n\n");
 
-const answer = await generateSummary(context,question);
+// ==============================
+// GENERATE LEGAL ANSWER
+// ==============================
+
+const answer = generateLegalAnswer(
+[...decryptedDocs,...precedentTexts],
+question
+);
+
+
+// ==============================
+// RESPONSE
+// ==============================
 
 res.json({
 success:true,

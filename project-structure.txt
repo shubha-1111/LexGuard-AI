@@ -1,0 +1,111 @@
+.
+├── backend
+│   ├── package-lock.json
+│   ├── package.json
+│   └── src
+│       ├── config
+│       │   └── db.js
+│       ├── controllers
+│       │   ├── adminController.js
+│       │   ├── authController.js
+│       │   ├── caseController.js
+│       │   ├── caseIntelligenceController.js
+│       │   ├── deadlineController.js
+│       │   ├── documentController.js
+│       │   ├── draftController.js
+│       │   ├── hearingController.js
+│       │   ├── legalChatController.js
+│       │   ├── legalResearchController.js
+│       │   ├── precedentController.js
+│       │   ├── riskController.js
+│       │   └── translationController.js
+│       ├── middleware
+│       │   ├── authMiddleware.js
+│       │   ├── errorHandler.js
+│       │   └── uploadMiddleware.js
+│       ├── models
+│       │   ├── AuditLog.js
+│       │   ├── Case.js
+│       │   ├── Deadline.js
+│       │   ├── Document.js
+│       │   ├── Hearing.js
+│       │   ├── Precedent.js
+│       │   └── User.js
+│       ├── routes
+│       │   ├── adminRoutes.js
+│       │   ├── authRoutes.js
+│       │   ├── caseIntelligenceRoutes.js
+│       │   ├── caseRoutes.js
+│       │   ├── deadlineRoutes.js
+│       │   ├── documentRoutes.js
+│       │   ├── draftRoutes.js
+│       │   ├── hearingRoutes.js
+│       │   ├── legalChatRoutes.js
+│       │   ├── legalResearchRoutes.js
+│       │   ├── precedentRoutes.js
+│       │   ├── protectedRoutes.js
+│       │   ├── riskRoutes.js
+│       │   └── translationRoutes.js
+│       ├── server.js
+│       └── utils
+│           ├── aiSummarizer.js
+│           ├── caseAnalyzer.js
+│           ├── citationExtractor.js
+│           ├── dateExtractor.js
+│           ├── deadlineExtractor.js
+│           ├── draftGenerator.js
+│           ├── embeddings.js
+│           ├── encryption.js
+│           ├── legalChatEngine.js
+│           ├── legalSectionExtractor.js
+│           ├── logger.js
+│           ├── precedentSearch.js
+│           ├── riskAnalyzer.js
+│           ├── sectionKnowledgeBase.js
+│           ├── semanticSearch.js
+│           ├── similarity.js
+│           ├── summarizer.js
+│           ├── textCleaner.js
+│           ├── timelineExtractor.js
+│           ├── translator.js
+│           ├── validationSchemas.js
+│           └── vectorSearch.js
+├── frontend
+│   ├── README.md
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   ├── favicon.svg
+│   │   └── icons.svg
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── assets
+│   │   │   ├── hero.png
+│   │   │   ├── react.svg
+│   │   │   └── vite.svg
+│   │   ├── components
+│   │   │   ├── Navbar.jsx
+│   │   │   └── Sidebar.jsx
+│   │   ├── index.css
+│   │   ├── main.jsx
+│   │   ├── pages
+│   │   │   ├── CaseDetails.jsx
+│   │   │   ├── Cases.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── DocumentAnalyzer.jsx
+│   │   │   ├── Login.jsx
+│   │   │   └── NewCase.jsx
+│   │   └── services
+│   │       ├── api.js
+│   │       ├── caseService.js
+│   │       └── documentService.js
+│   ├── tailwind.config.js
+│   └── vite.config.js
+├── package-lock.json
+├── package.json
+└── project-structure.txt
+
+16 directories, 93 files
