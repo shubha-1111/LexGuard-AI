@@ -34,17 +34,19 @@ app.use(helmet());
 app.use(express.json({ limit: "10kb" }));
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "http://localhost:5174"],  
     credentials: true
-}));
-
-
+   }));
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 100,
-    message: "Too many requests from this IP"
+    max: process.env.NODE_ENV === "production" ? 100 : 10000,
+    message: "Too many requests from this IP",
+    skip: (req) => process.env.NODE_ENV !== "production"
 });
+
+
+
 
 app.use(limiter);
 

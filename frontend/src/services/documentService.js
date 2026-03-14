@@ -4,7 +4,7 @@ export const uploadDocument = (caseId, file) => {
   const formData = new FormData();
   formData.append("file", file);
 
-  return axios.post(`/documents/upload/${caseId}`, formData, {
+  return axios.post(`/documents/${caseId}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data"
     }
@@ -12,5 +12,5 @@ export const uploadDocument = (caseId, file) => {
 };
 
 export const getDocuments = (caseId) => {
-  return axios.get(`/documents/${caseId}`);
+  return axios.get(`/documents/case/${caseId}`);
 };

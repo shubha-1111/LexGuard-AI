@@ -57,12 +57,13 @@ exports.uploadDocument = async (req, res, next) => {
         const sha256Hash = generateHash(extractedText);
 
         const document = await Document.create({
-            caseId,
-            encryptedText: encryptedData,
-            iv,
-            sha256Hash,
-            uploadedBy: req.user._id
-        });
+        caseId,
+        filename: req.file.originalname,
+        encryptedText: encryptedData,
+        iv,
+        sha256Hash,
+        uploadedBy: req.user._id
+      });
 
         res.status(201).json({
             message: "Document uploaded securely",
@@ -277,6 +278,28 @@ exports.askDocumentQuestion = async (req, res, next) => {
             answer
         });
 
+    } catch (error) {
+        next(error);
+    }
+};
+exports.getDocumentsByCase = async (req, res, next) => {
+    try {
+        const { caseId } = req.params;
+        const caseData = await Case.findById(caseId);
+        if (!caseData) {
+            return res.status(404).json({ message: "Case not found" });
+        }
+        if (
+            req.user.role !== "admin" &&
+            caseData.assignedLawyer.toString() !== req.user._id.toString() &&
+            caseData.client.toString() !== req.user._id.toString()
+        ) {
+            return res.status(403).json({ message: "Unauthorized" });
+        }
+        const documents = await Document.find({ caseId })
+            .select("filename uploadedBy createdAt")
+            .sort({ createdAt: -1 });
+        res.status(200).json({ documents });
     } catch (error) {
         next(error);
     }

@@ -7,6 +7,10 @@ const documentSchema = new mongoose.Schema({
         required: true,
         index: true
     },
+    filename: {
+        type: String,
+        default: "document.pdf"
+    },
     encryptedText: {
         type: String,
         required: true
@@ -25,5 +29,6 @@ const documentSchema = new mongoose.Schema({
         required: true
     }
 }, { timestamps: true });
+
 
 module.exports = mongoose.model("Document", documentSchema);
