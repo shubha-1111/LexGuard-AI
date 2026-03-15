@@ -8,6 +8,7 @@ import DocumentAnalyzer from "./pages/DocumentAnalyzer";
 import CaseDetails from "./pages/CaseDetails";
 import LegalChat from "./pages/LegalChat";
 import Hearings from "./pages/Hearings";
+import RiskAnalyzer from "./pages/RiskAnalyzer";
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   return token ? children : <Navigate to="/login" replace />;
@@ -81,6 +82,14 @@ function App() {
              <Hearings />
            </PrivateRoute>
         } 
+      />
+      <Route
+          path="/risk-analyzer"
+          element={
+            <PrivateRoute>
+              <RiskAnalyzer />
+            </PrivateRoute>
+          }
       />
       </Routes>
     </BrowserRouter>
