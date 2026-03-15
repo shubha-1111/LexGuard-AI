@@ -11,6 +11,7 @@ import Hearings from "./pages/Hearings";
 import RiskAnalyzer from "./pages/RiskAnalyzer";
 import DocumentDrafter from "./pages/DocumentDrafter";
 import Translator from "./pages/Translator";
+import Calendar from "./pages/Calendar";
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   return token ? children : <Navigate to="/login" replace />;
@@ -106,6 +107,14 @@ function App() {
           element={
             <PrivateRoute>
               <Translator />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/calendar"
+          element={
+            <PrivateRoute>
+              <Calendar />
             </PrivateRoute>
           }
         />
