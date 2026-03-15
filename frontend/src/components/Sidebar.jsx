@@ -6,6 +6,8 @@ const links = [
   { to: "/cases",        label: "Cases" },
   { to: "/hearings",     label: "Hearings" },
   { to: "/risk-analyzer", label: "Risk Analyzer" },
+  { to: "/drafter",       label: "Document Drafter" },
+  { to: "/translator",    label: "Translator" },
   { to: "/documents",    label: "Document Analyzer" },
   { to: "/legal-chat",   label: "AI Legal Assistant" },
 ];

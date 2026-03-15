@@ -1,7 +1,7 @@
 const Case = require("../models/Case");
 const Document = require("../models/Document");
 const { decryptText, generateHash } = require("../utils/encryption");
-const { extractLegalSections } = require("../utils/legalSectionExtractor");
+const { explainSections } = require("../utils/legalSectionExtractor");
 const { generateDraft } = require("../utils/draftGenerator");
 
 exports.generateDraftDocument = async (req, res, next) => {
@@ -31,14 +31,9 @@ exports.generateDraftDocument = async (req, res, next) => {
             combinedText += decrypted + "\n\n";
         }
 
-        const sectionsDetected = extractLegalSections(combinedText);
-
-        const allSections = [
-            ...sectionsDetected.IPC,
-            ...sectionsDetected.CrPC,
-            ...sectionsDetected.CPC,
-            ...sectionsDetected.Constitution
-        ];
+        const ipcMatches = combinedText.match(/IPC\s+\d+|Section\s+\d+\s+IPC|u\/s\s+\d+/gi) || [];
+        const uniqueSections = [...new Set(ipcMatches)];
+        const allSections = uniqueSections.length > 0 ? uniqueSections : ["relevant legal provisions"];
 
         const facts = combinedText.substring(0, 800);
 

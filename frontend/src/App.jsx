@@ -9,6 +9,8 @@ import CaseDetails from "./pages/CaseDetails";
 import LegalChat from "./pages/LegalChat";
 import Hearings from "./pages/Hearings";
 import RiskAnalyzer from "./pages/RiskAnalyzer";
+import DocumentDrafter from "./pages/DocumentDrafter";
+import Translator from "./pages/Translator";
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   return token ? children : <Navigate to="/login" replace />;
@@ -83,14 +85,30 @@ function App() {
            </PrivateRoute>
         } 
       />
-      <Route
+        <Route
           path="/risk-analyzer"
           element={
             <PrivateRoute>
               <RiskAnalyzer />
             </PrivateRoute>
           }
-      />
+        />
+        <Route
+          path="/drafter"
+          element={
+            <PrivateRoute>
+              <DocumentDrafter />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/translator"
+          element={
+            <PrivateRoute>
+              <Translator />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
