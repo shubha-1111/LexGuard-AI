@@ -7,6 +7,7 @@ import NewCase from "./pages/NewCase";
 import DocumentAnalyzer from "./pages/DocumentAnalyzer";
 import CaseDetails from "./pages/CaseDetails";
 import LegalChat from "./pages/LegalChat";
+import Hearings from "./pages/Hearings";
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   return token ? children : <Navigate to="/login" replace />;
@@ -72,7 +73,15 @@ function App() {
            </PrivateRoute>
           }
        />
-
+      
+       <Route
+         path="/hearings"
+         element={
+           <PrivateRoute>
+             <Hearings />
+           </PrivateRoute>
+        } 
+      />
       </Routes>
     </BrowserRouter>
   );
